@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userModel = require("../models/userSchema");
 
+// Create a user
 router.post("/createUser", (req, res) => {
   const newUser = new userModel({
     name: req.body.name,
@@ -12,10 +13,23 @@ router.post("/createUser", (req, res) => {
   })
 
   newUser.save((err) =>{
-    if (err) console.error(err);
-
-    res.send("User created succesfully!");
+    if (err){
+      res.send(err)
+    } else {
+      res.send("User created succesfully!");
+    };
   })
 });
+
+// Get all users
+router.get("/allUsers", (req, res) => {
+  userModel.find({}, (docs, err) => {
+    if (err){
+      res.send(err)
+    } else {
+    res.send(docs)
+    };
+  })
+})
 
 module.exports = router;

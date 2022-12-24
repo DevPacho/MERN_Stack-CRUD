@@ -32,4 +32,15 @@ router.get("/allUsers", (req, res) => {
   })
 })
 
+// Update user data by ID
+router.post("/updateUserData", (req, res) => {
+  userModel.find({ _id: req.body._id }, (docs, err) => {
+    if (err){
+      res.send(err)
+    } else {
+    res.send(docs)
+    };
+  })
+})
+
 module.exports = router;

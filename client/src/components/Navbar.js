@@ -15,7 +15,7 @@ function Navbar() {
                 <a className="nav-link active" aria-current="page" href="/">Users list</a>
               </li>
               <li className="nav-item">
-                <a class="nav-link" href="createUser">Create user</a>
+                <a className="nav-link" href="createUser">Create user</a>
               </li>
             </ul>
           </div>

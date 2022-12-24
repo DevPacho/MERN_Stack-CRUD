@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import uniqID from "uniqid";
 import axios from "axios";
 
 function CreateUser() {
@@ -13,7 +12,6 @@ function CreateUser() {
       name,
       email,
       cellphone,
-      id: uniqID()
     }
 
     console.log(userData);

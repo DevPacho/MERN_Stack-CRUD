@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function User({ userInfo }) {
   return (
@@ -12,7 +13,9 @@ function User({ userInfo }) {
             <li className="list-group-item">{userInfo.cellphone}</li>
           </ul>
 
-          <button className="btn btn-success">Edit</button>
+          <Link to={`/updateUser/${userInfo._id}`}>
+            <li className="btn btn-success">Edit</li>
+          </Link>
           &nbsp;
           <button className="btn btn-danger">Delete</button>
           <hr className="mt-4"></hr>

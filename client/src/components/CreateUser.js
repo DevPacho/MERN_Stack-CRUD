@@ -12,7 +12,7 @@ function CreateUser() {
       name,
       email,
       cellphone,
-    }
+    };
 
     console.log(userData);
 
@@ -23,7 +23,7 @@ function CreateUser() {
     setName("");
     setEmail("");
     setCellphone("");
-  }
+  };
 
   return (
     <div className="container">

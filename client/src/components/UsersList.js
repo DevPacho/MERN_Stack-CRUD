@@ -11,8 +11,8 @@ function UsersList() {
       setUsersData(res.data);
     }).catch(err => {
       console.log(err);
-    })
-  }, [])
+    });
+  }, []);
 
   // Map each user (create 1 item by 1 user individual data for the list)
 

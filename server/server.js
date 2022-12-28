@@ -5,9 +5,6 @@ const port = 5000;
 // MongoDB Connection
 const databaseConnection = require("./database");
 
-// DB models
-const userSchema = require("./models/userSchema");
-
 // Body parser to get the sent data
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());

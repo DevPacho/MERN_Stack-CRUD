@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function CreateUser() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [cellphone, setCellphone] = useState("");
+
+  const navigate = useNavigate();
 
   function saveUser() {
     const userData = {
@@ -14,11 +18,16 @@ function CreateUser() {
       cellphone,
     };
 
-    console.log(userData);
+    axios.post("/api/user/createUser", userData).then(res => {
 
-    axios.post("/api/user/createUser", userData)
-    .then(res => {alert(res.data)})
-    .catch(err => {console.error(err)});
+      Swal.fire({
+        title: res.data,
+        icon: "success"
+      });
+      const delay = setTimeout(() => {navigate("/")}, 3000);
+      return () => clearTimeout(delay);
+
+    }).catch(err => {console.error(err)});
 
     setName("");
     setEmail("");
@@ -31,7 +40,7 @@ function CreateUser() {
         <h2 className="mt-4">CREATE A NEW USER</h2>
       </div>
 
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-sm-6 offset-3">
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name</label>
@@ -70,7 +79,7 @@ function CreateUser() {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CreateUser;

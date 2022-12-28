@@ -1,27 +1,51 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function UpdateUser() {
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [cellphone, setCellphone] = useState("");
 
   useEffect(() => {
-    axios.post("/api/user/updateUserData", {_id : params._id}).then(res => {
+    axios.post("/api/user/getUserData", {_id : params._id}).then(res => {
+
       const userData = res.data[0];
 
       setName(userData.name);
       setEmail(userData.email);
       setCellphone(userData.cellphone);
-    })
-  }, []);
+    });
+  }, [params._id]);
 
   function editUser(){
 
+    const userData = {
+      name,
+      email,
+      cellphone,
+      _id: params._id
+    };
+
+    axios.post("/api/user/updateUserData", userData).then(res => {
+
+      Swal.fire({
+        title: res.data,
+        icon: "success"
+      });
+      const delay = setTimeout(() => {navigate("/")}, 3000);
+      return () => clearTimeout(delay);
+
+    }).catch(err => console.log(err));
+
+    setName("");
+    setEmail("");
+    setCellphone("");
   }
 
   return (
@@ -69,7 +93,7 @@ function UpdateUser() {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default UpdateUser;

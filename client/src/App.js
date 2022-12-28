@@ -1,11 +1,7 @@
 import { RouterProvider } from "react-router-dom";
-
-import "./App.css";
-import CreateUser from "./components/CreateUser";
 import Navbar from "./components/Navbar";
-import UpdateUser from "./components/UpdateUser";
-import UsersList from "./components/UsersList";
 import router from "./routes/routes";
+import "./App.css"
 
 function App() {
   return (

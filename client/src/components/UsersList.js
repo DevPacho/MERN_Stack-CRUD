@@ -9,9 +9,7 @@ function UsersList() {
   useEffect(() => {
     axios.get("api/user/allUsers").then(res => {
       setUsersData(res.data);
-    }).catch(err => {
-      console.log(err);
-    });
+    }).catch(err => {console.log(err)});
   }, []);
 
   // Map each user (create 1 item by 1 user individual data for the list)
@@ -21,15 +19,15 @@ function UsersList() {
       <div>
         <User userInfo={user} />
       </div>
-    )
-  })
+    );
+  });
 
   return (
-    <div>
-      <h2>Users list</h2>
+    <div className="mt-4">
+      <h2 className="mb-4">USERS LIST</h2>
       {usersList}
     </div>
-  )
-}
+  );
+};
 
 export default UsersList;
